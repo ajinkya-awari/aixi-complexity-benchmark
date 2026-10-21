@@ -1,0 +1,8 @@
+{
+ "aggregate_label": "suite-level descriptive uncertainty for the fixed 20-task suite; not inference to all possible tasks",
+ "ci": 0.95,
+ "hierarchical": "task then replicate",
+ "paired_block": "replicate within task",
+ "resamples": 10000,
+ "seed": 20261003
+}

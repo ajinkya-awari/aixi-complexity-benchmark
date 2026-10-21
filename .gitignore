@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+logs/
+results/timing_probe/
+results/local_run/jobs/
+.env

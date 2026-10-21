@@ -1,0 +1,22 @@
+{
+ "branching_V1": "pass",
+ "branching_V2": "pass",
+ "branching_V3": "pass",
+ "branching_V4": "pass",
+ "contextual_V1": "pass",
+ "contextual_V2": "pass",
+ "contextual_V3": "pass",
+ "contextual_V4": "pass",
+ "delayed_V1": "pass",
+ "delayed_V2": "pass",
+ "delayed_V3": "pass",
+ "delayed_V4": "pass",
+ "reactive_V1": "pass",
+ "reactive_V2": "pass",
+ "reactive_V3": "pass",
+ "reactive_V4": "pass",
+ "sparse_sequence_V1": "pass",
+ "sparse_sequence_V2": "pass",
+ "sparse_sequence_V3": "pass",
+ "sparse_sequence_V4": "pass"
+}

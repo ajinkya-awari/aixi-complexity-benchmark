@@ -1,0 +1,9 @@
+{
+ "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+ "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+ "status": "pass",
+ "reason": null,
+ "license": "apache-2.0",
+ "cache_path": "C:\\Users\\connect\\.cache\\huggingface\\hub\\models--Qwen--Qwen2.5-0.5B-Instruct\\snapshots\\7ae557604adf67be50417f59c2c2f167def9a775",
+ "n_files": 9
+}

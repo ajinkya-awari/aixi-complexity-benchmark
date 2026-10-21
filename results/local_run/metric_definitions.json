@@ -1,0 +1,6 @@
+{
+ "V_definition": "paired empirical mean return over the same 100 held-out seeds of one task x replicate",
+ "na_rule": "NA when abs(V_oracle - V_random) < 1e-8; raw return retained",
+ "normalized_oracle_gap": "(V_oracle - V_agent) / max(abs(V_oracle - V_random), 1e-8)",
+ "reported_unclipped": true
+}

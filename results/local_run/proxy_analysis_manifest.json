@@ -1,0 +1,6 @@
+{
+ "correction": "holm",
+ "method": "spearman",
+ "status": "exploratory",
+ "tests": 18
+}
