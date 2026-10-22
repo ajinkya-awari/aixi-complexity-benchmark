@@ -3,7 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:10262b,100:0f766e&height=220&section=header&text=AIXI-Complexity%20Benchmark&fontSize=44&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=Agents%20on%20frozen%20finite-state%20tasks%20with%20declared%20proxy%20vectors&descAlignY=58&descAlign=50&descSize=16" width="100%" alt="AIXI-Complexity Benchmark"/>
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white)](pyproject.toml)
-[![Tests](https://img.shields.io/badge/tests-79%20passed-22c55e)](tests)
+[![Tests](https://img.shields.io/badge/tests-81%20passed-22c55e)](tests)
 [![CI](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml)
 [![Lint](https://img.shields.io/badge/ruff-clean-22c55e)](pyproject.toml)
 [![Tasks](https://img.shields.io/badge/frozen%20tasks-20-0f766e)](task_specs/frozen_finite_tasks.yaml)
@@ -31,7 +31,7 @@ completeness and says nothing about AIXI, AGI or universal intelligence.
 | Data | 10 replicates per task, 256 random exploration episodes, 100 held-out episodes (frozen seeds) |
 | Primary metric | normalized oracle gap `(V_oracle - V_agent) / max(abs(V_oracle - V_random), 1e-8)`, unclipped |
 | Uncertainty | 10,000-resample paired bootstrap per task; hierarchical bootstrap for the suite |
-| Verification | 79 tests passing, ruff clean, `aixi-bench verify-run` reports 0 problems |
+| Verification | 81 tests passing, ruff clean, `aixi-bench verify-run` reports 0 problems |
 
 ## Results
 
@@ -108,7 +108,7 @@ The full evaluation is CPU-heavy (AC-CTW-UCT dominates); expect hours on a lapto
 
 ```text
 aixi_bench/      package: tasks, env, analysis (oracle), agents, ctw, accctw, llmpolicy, evalrun, metrics, stats
-tests/           79 tests (contracts, environments, oracle, CTW, planner, metrics, packaging)
+tests/           81 tests (contracts, environments, oracle, CTW, planner, metrics, packaging)
 task_specs/      frozen 20-task corpus
 artifacts/       manifests, gate evidence, frozen exploration corpora
 results/         local run outputs and figures
