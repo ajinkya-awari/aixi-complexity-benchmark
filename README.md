@@ -4,6 +4,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white)](pyproject.toml)
 [![Tests](https://img.shields.io/badge/tests-77%20passed-22c55e)](tests)
+[![CI](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml)
 [![Lint](https://img.shields.io/badge/ruff-clean-22c55e)](pyproject.toml)
 [![Tasks](https://img.shields.io/badge/frozen%20tasks-20-0f766e)](task_specs/frozen_finite_tasks.yaml)
 [![Local only](https://img.shields.io/badge/remote%20APIs-none-64748b)](#limitations)
