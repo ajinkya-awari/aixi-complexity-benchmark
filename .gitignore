@@ -8,3 +8,6 @@ logs/
 results/timing_probe/
 results/local_run/jobs/
 .env
+
+# local-only drafts (not published)
+draft_outputs/

@@ -112,7 +112,6 @@ tests/           81 tests (contracts, environments, oracle, CTW, planner, metric
 task_specs/      frozen 20-task corpus
 artifacts/       manifests, gate evidence, frozen exploration corpora
 results/         local run outputs and figures
-draft_outputs/   unreviewed local drafts (not submitted or sent anywhere)
 assets/          README diagram
 ```
 
