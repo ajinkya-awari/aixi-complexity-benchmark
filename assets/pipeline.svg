@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 330" width="960" height="330" role="img" aria-labelledby="t d">
+  <title id="t">AIXI-Complexity evaluation pipeline</title>
+  <desc id="d">Frozen tasks feed a public exploration corpus; five arms are evaluated on identical held-out seeds; metrics and bootstrap intervals follow.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/><stop offset="1" stop-color="#10262b"/>
+    </linearGradient>
+    <style>
+      .box { fill:#161b22; stroke:#2dd4bf; stroke-width:1.5; rx:10; }
+      .arm { fill:#161b22; stroke:#38bdf8; stroke-width:1.2; rx:8; }
+      .t { fill:#e6edf3; font:600 15px 'Segoe UI',Arial,sans-serif; text-anchor:middle; }
+      .s { fill:#9fb3c8; font:12px 'Segoe UI',Arial,sans-serif; text-anchor:middle; }
+      .flow { stroke:#2dd4bf; stroke-width:2; fill:none; stroke-dasharray:7 7; animation:dash 1.2s linear infinite; }
+      @keyframes dash { to { stroke-dashoffset:-14; } }
+      .pulse { fill:#2dd4bf; animation:pulse 2.4s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { opacity:.25; } 50% { opacity:1; } }
+      @media (prefers-reduced-motion: reduce) { .flow,.pulse { animation:none; } }
+    </style>
+  </defs>
+  <rect width="960" height="330" rx="16" fill="url(#bg)"/>
+
+  <rect class="box" x="30" y="115" width="150" height="90"/>
+  <text class="t" x="105" y="150">20 frozen tasks</text>
+  <text class="s" x="105" y="172">5 families x 4 variants</text>
+  <text class="s" x="105" y="190">hashed, key-sufficient</text>
+
+  <rect class="box" x="235" y="115" width="150" height="90"/>
+  <text class="t" x="310" y="150">Public corpus</text>
+  <text class="s" x="310" y="172">256 random episodes</text>
+  <text class="s" x="310" y="190">x 10 replicates</text>
+
+  <rect class="arm" x="450" y="30" width="170" height="40"/><text class="t" x="535" y="56" style="font-size:13px">Random</text>
+  <rect class="arm" x="450" y="82" width="170" height="40"/><text class="t" x="535" y="108" style="font-size:13px">Tabular Q-learning</text>
+  <rect class="arm" x="450" y="134" width="170" height="40"/><text class="t" x="535" y="160" style="font-size:13px">AC-CTW-UCT</text>
+  <rect class="arm" x="450" y="186" width="170" height="40"/><text class="t" x="535" y="212" style="font-size:13px">Local Qwen policy table</text>
+  <rect class="arm" x="450" y="238" width="170" height="40"/><text class="t" x="535" y="264" style="font-size:13px">Exact oracle</text>
+
+  <rect class="box" x="690" y="115" width="110" height="90"/>
+  <text class="t" x="745" y="150">Held-out</text>
+  <text class="s" x="745" y="172">100 paired seeds</text>
+  <text class="s" x="745" y="190">no updates</text>
+
+  <rect class="box" x="830" y="115" width="105" height="90"/>
+  <text class="t" x="882" y="150">Metrics</text>
+  <text class="s" x="882" y="172">oracle gap</text>
+  <text class="s" x="882" y="190">bootstrap CI</text>
+
+  <path class="flow" d="M180 160 H235"/>
+  <path class="flow" d="M385 160 H415 V50 H450"/>
+  <path class="flow" d="M385 160 H415 V102 H450"/>
+  <path class="flow" d="M385 160 H450"/>
+  <path class="flow" d="M385 160 H415 V206 H450"/>
+  <path class="flow" d="M620 50 H655 V160 H690"/>
+  <path class="flow" d="M620 102 H655 V160"/>
+  <path class="flow" d="M620 154 H690"/>
+  <path class="flow" d="M620 206 H655 V160"/>
+  <path class="flow" d="M620 258 H655 V160"/>
+  <path class="flow" d="M800 160 H830"/>
+  <circle class="pulse" cx="105" cy="100" r="5"/>
+  <circle class="pulse" cx="310" cy="100" r="5" style="animation-delay:.6s"/>
+  <circle class="pulse" cx="745" cy="100" r="5" style="animation-delay:1.2s"/>
+  <circle class="pulse" cx="882" cy="100" r="5" style="animation-delay:1.8s"/>
+  <text class="s" x="480" y="310" style="text-anchor:middle">Oracle uses hidden task tables only inside the evaluator; learners see public observations, actions and rewards only.</text>
+</svg>
