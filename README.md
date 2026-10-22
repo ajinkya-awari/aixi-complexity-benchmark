@@ -3,7 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:10262b,100:0f766e&height=220&section=header&text=AIXI-Complexity%20Benchmark&fontSize=44&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=Agents%20on%20frozen%20finite-state%20tasks%20with%20declared%20proxy%20vectors&descAlignY=58&descAlign=50&descSize=16" width="100%" alt="AIXI-Complexity Benchmark"/>
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white)](pyproject.toml)
-[![Tests](https://img.shields.io/badge/tests-77%20passed-22c55e)](tests)
+[![Tests](https://img.shields.io/badge/tests-79%20passed-22c55e)](tests)
 [![CI](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml/badge.svg)](https://github.com/ajinkya-awari/aixi-complexity-benchmark/actions/workflows/ci.yml)
 [![Lint](https://img.shields.io/badge/ruff-clean-22c55e)](pyproject.toml)
 [![Tasks](https://img.shields.io/badge/frozen%20tasks-20-0f766e)](task_specs/frozen_finite_tasks.yaml)
@@ -18,7 +18,7 @@
 
 A small benchmark that asks how five kinds of decision-making agent compare as declared task-difficulty proxies change:
 a random policy, tabular Q-learning, an AC-CTW-UCT planner (inspired by MC-AIXI-CTW, not a faithful reproduction), a
-local `Qwen2.5-0.5B-Instruct` policy-table arm, and an exact dynamic-programming oracle. Everything runs locally on CPU.
+local `Qwen2.5-0.5B-Instruct` policy-table arm (plus a secondary digit-constrained variant), and an exact dynamic-programming oracle. Everything runs locally on CPU.
 
 **Status:** local implementation complete; public release complete with limitations. This is not a claim of scientific
 completeness and says nothing about AIXI, AGI or universal intelligence.
@@ -31,7 +31,7 @@ completeness and says nothing about AIXI, AGI or universal intelligence.
 | Data | 10 replicates per task, 256 random exploration episodes, 100 held-out episodes (frozen seeds) |
 | Primary metric | normalized oracle gap `(V_oracle - V_agent) / max(abs(V_oracle - V_random), 1e-8)`, unclipped |
 | Uncertainty | 10,000-resample paired bootstrap per task; hierarchical bootstrap for the suite |
-| Verification | 77 tests passing, ruff clean, `aixi-bench verify-run` reports 0 problems |
+| Verification | 79 tests passing, ruff clean, `aixi-bench verify-run` reports 0 problems |
 
 ## Results
 
@@ -44,9 +44,12 @@ inference to all possible tasks.
 | Tabular Q | 10.92 | 0.333 | [0.247, 0.421] |
 | AC-CTW-UCT | 12.14 | 0.199 | [0.076, 0.346] |
 | Local Qwen policy table | 5.48 | 0.999 | [0.610, 1.351] |
+| Local Qwen, digit-constrained (secondary, added after seeing the primary result) | 5.02 | 1.166 | [0.917, 1.409] |
 | Exact oracle | 13.16 | 0.000 | [0.000, 0.000] |
 
-Lower gap is closer to the oracle. The Qwen row uses only the 86 of 200 task-replicate records with a valid policy table.
+Lower gap is closer to the oracle. The primary Qwen row uses only the 86 of 200 task-replicate records with a valid policy table.
+
+The secondary arm restricts decoding to the digit tokens 0 and 1 for exactly one token per history key, so all 200 tables are valid by construction. It was added after the primary result was known, so treat it as exploratory; it does not replace the primary arm. A gap above 1 means the arm scored below the random policy on average.
 
 ![Normalized oracle gap by task](results/local_run/figures/gap_by_task.png)
 
@@ -92,6 +95,8 @@ aixi-bench tasks validate && aixi-bench env-check && aixi-bench data verify
 aixi-bench model-gate        # downloads the pinned Qwen revision (about 1 GB) into the Hugging Face cache
 aixi-bench llm-policy        # slow on CPU
 aixi-bench run && aixi-bench run --agents local_llm_policy
+aixi-bench llm-policy --constrained --out artifacts/models/local_llm_constrained   # optional secondary arm
+aixi-bench run --agents local_llm_constrained
 aixi-bench metrics && aixi-bench bootstrap && aixi-bench proxy-analysis && aixi-bench verify-run
 pytest -q && ruff check .
 ```
@@ -102,7 +107,7 @@ The full evaluation is CPU-heavy (AC-CTW-UCT dominates); expect hours on a lapto
 
 ```text
 aixi_bench/      package: tasks, env, analysis (oracle), agents, ctw, accctw, llmpolicy, evalrun, metrics, stats
-tests/           77 tests (contracts, environments, oracle, CTW, planner, metrics, packaging)
+tests/           79 tests (contracts, environments, oracle, CTW, planner, metrics, packaging)
 task_specs/      frozen 20-task corpus
 artifacts/       manifests, gate evidence, frozen exploration corpora
 results/         local run outputs and figures

@@ -88,17 +88,31 @@ class QwenPolicyGenerator:
                                       temperature=None, top_p=None, top_k=None)
         return self.tokenizer.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True)
 
+    def generate_constrained(self, prompt: str, n_keys: int) -> str:
+        """Greedy decoding restricted to the digit tokens 0 and 1 for exactly n_keys steps (secondary arm)."""
+        allowed = [self.tokenizer.convert_tokens_to_ids("0"), self.tokenizer.convert_tokens_to_ids("1")]
+        messages = [{"role": "user", "content": prompt}]
+        ids = self.tokenizer.apply_chat_template(messages, add_generation_prompt=True, return_tensors="pt",
+                                                 return_dict=True)
+        with self.torch.no_grad():
+            out = self.model.generate(**ids, do_sample=False, max_new_tokens=n_keys, min_new_tokens=n_keys,
+                                      temperature=None, top_p=None, top_k=None,
+                                      prefix_allowed_tokens_fn=lambda batch_id, input_ids: allowed)
+        return self.tokenizer.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True)
 
-def generate_policy_record(generator, corpus, m, tokenizer_hashes: dict):
+
+def generate_policy_record(generator, corpus, m, tokenizer_hashes: dict, constrained=False):
     keys, prompt = build_prompt(corpus, m)
-    raw = generator.generate(prompt, len(keys))
+    raw = generator.generate_constrained(prompt, len(keys)) if constrained else generator.generate(prompt, len(keys))
     status, actions, reason = validate_output(raw, len(keys))
     return {
         "status": status, "reason": reason, "raw_output": raw, "n_keys": len(keys),
         "keys": [list(k) for k in keys], "actions": actions,
         "model_id": MODEL_ID, "revision": MODEL_REVISION, "schema_version": SCHEMA_VERSION,
-        "decoding": {"do_sample": False, "max_new_tokens_rule": "n_keys + " + str(MAX_NEW_TOKENS_SLACK),
-                     "temperature": None, "top_p": None},
+        "decoding": ({"do_sample": False, "max_new_tokens_rule": "n_keys", "allowed_tokens": ["0", "1"],
+                      "temperature": None, "top_p": None, "mode": "constrained"} if constrained else
+                     {"do_sample": False, "max_new_tokens_rule": "n_keys + " + str(MAX_NEW_TOKENS_SLACK),
+                      "temperature": None, "top_p": None, "mode": "free"}),
         "prompt_template_hash": sha256_hex(PROMPT_TEMPLATE.encode("utf-8")),
         "prompt_instance_hash": sha256_hex(prompt.encode("utf-8")),
         "tokenizer_hash": sha256_hex(json.dumps(tokenizer_hashes, sort_keys=True).encode("utf-8")),

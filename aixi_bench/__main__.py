@@ -107,7 +107,8 @@ def cmd_llm_policy(args):
         if path.exists():
             continue
         corpus = load_corpus_file(corpus_path(args.data, t.task_id, rep))
-        _write_json(path, generate_policy_record(gen, corpus, t.m, tok["tokenizer_files"]))
+        _write_json(path, generate_policy_record(gen, corpus, t.m, tok["tokenizer_files"],
+                                                 constrained=args.constrained))
         n += 1
         print("generated", t.task_id, rep, flush=True)
     return 0
@@ -119,8 +120,8 @@ def cmd_run(args):
     ids = args.task_ids.split(",") if args.task_ids else None
     reps = args.replicates
     agents = args.agents.split(",")
-    run_all(corpus, args.data, args.llm_dir, args.out, replicates=reps, agents_enabled=agents,
-            processes=args.processes, task_ids=ids)
+    run_all(corpus, args.data, args.llm_dir, args.out, constrained_dir=args.constrained_dir, replicates=reps,
+            agents_enabled=agents, processes=args.processes, task_ids=ids)
     return 0
 
 
@@ -234,6 +235,8 @@ def build_parser():
     lp.add_argument("--data", default="artifacts/data")
     lp.add_argument("--model-gate", default="artifacts/gates/qwen_model_gate.json")
     lp.add_argument("--out", default="artifacts/models/local_llm_policy")
+    lp.add_argument("--constrained", action="store_true",
+                    help="secondary arm: decoding restricted to the digit tokens 0 and 1")
     lp.add_argument("--reverse", action="store_true", help="process task x replicate records in reverse order")
     lp.set_defaults(fn=cmd_llm_policy)
 
@@ -244,6 +247,7 @@ def build_parser():
     r.add_argument("--out", default="results/local_run")
     r.add_argument("--replicates", type=int, default=10)
     r.add_argument("--processes", type=int, default=3)
+    r.add_argument("--constrained-dir", default="artifacts/models/local_llm_constrained")
     r.add_argument("--task-ids")
     r.add_argument("--agents", default="random,oracle,q_learning,ac_ctw_uct")
     r.set_defaults(fn=cmd_run)

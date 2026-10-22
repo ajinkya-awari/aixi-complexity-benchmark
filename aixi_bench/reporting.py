@@ -5,9 +5,10 @@ from pathlib import Path
 import pandas as pd
 import yaml
 
-AGENTS = ["random", "q_learning", "ac_ctw_uct", "local_llm_policy", "oracle"]
+AGENTS = ["random", "q_learning", "ac_ctw_uct", "local_llm_policy", "local_llm_constrained", "oracle"]
 LABELS = {"random": "Random", "q_learning": "Tabular Q", "ac_ctw_uct": "AC-CTW-UCT",
-          "local_llm_policy": "Local Qwen policy table", "oracle": "Exact oracle"}
+          "local_llm_policy": "Local Qwen policy table",
+          "local_llm_constrained": "Local Qwen, digit-constrained (secondary)", "oracle": "Exact oracle"}
 
 
 def _fmt(x, nd=3):
@@ -73,6 +74,8 @@ def write_drafts(run, tasks_path, out_dir):
     gap, ret = _suite_table(run)
     llm = status[status.agent == "local_llm_policy"]
     llm_counts = llm.status.value_counts().to_dict()
+    con = status[status.agent == "local_llm_constrained"]
+    con_counts = con.status.value_counts().to_dict()
     rows = []
     for a in AGENTS:
         if a in gap.index:
@@ -80,6 +83,7 @@ def write_drafts(run, tasks_path, out_dir):
             rows.append((a, _fmt(ret.loc[a, "mean"], 2), _fmt(g["mean"]), _fmt(g.ci_lo), _fmt(g.ci_hi)))
     md_table = "| Arm | Mean return | Normalized oracle gap | 95% CI low | 95% CI high |\n|---|---|---|---|---|\n"
     md_table += "\n".join(f"| {LABELS[a]} | {r} | {g} | {lo} | {hi} |" for a, r, g, lo, hi in rows)
+    con_line = ", ".join(f"{k}: {v}" for k, v in sorted(con_counts.items())) or "not run"
     llm_line = ", ".join(f"{k}: {v}" for k, v in sorted(llm_counts.items())) or "no records"
 
     readme = f"""# AIXI-Complexity Benchmark (local draft)
@@ -104,6 +108,7 @@ hierarchical bootstrap (10,000 resamples of tasks, then replicates), suite-level
 
 Local Qwen policy-table status over task x replicate records ({len(llm)} total): {llm_line}.
 Invalid outputs are excluded from value-based metrics and are never replaced by other behavior.
+Secondary digit-constrained Qwen arm status ({len(con)} total): {con_line}.
 
 ## Files
 

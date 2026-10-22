@@ -55,3 +55,18 @@ def test_gate_skips_on_wrong_revision(tmp_path):
 def test_license_parser():
     assert modelgate.parse_license("---\nlicense: apache-2.0\nlanguage:\n- en\n---\n# x") == "apache-2.0"
     assert modelgate.parse_license("# no front matter") is None
+
+
+def test_constrained_decoding_contract():
+    src = inspect.getsource(llmpolicy.QwenPolicyGenerator.generate_constrained)
+    assert "do_sample=False" in src and "max_new_tokens=n_keys" in src and "min_new_tokens=n_keys" in src
+    assert "prefix_allowed_tokens_fn" in src and "temperature=None" in src and "top_p=None" in src
+
+
+def test_constrained_record_marks_mode():
+    class Fake:
+        def generate_constrained(self, prompt, n_keys):
+            return "0" * n_keys
+
+    rec = llmpolicy.generate_policy_record(Fake(), CORPUS, TASK.m, {}, constrained=True)
+    assert rec["status"] == "valid" and rec["decoding"]["mode"] == "constrained"

@@ -13,7 +13,8 @@ from .env import FiniteTaskEnv
 from .llmpolicy import policy_table_from_record
 from .tasks import FiniteTask
 
-AGENT_ORDER = ["random", "oracle", "q_learning", "ac_ctw_uct", "local_llm_policy"]
+AGENT_ORDER = ["random", "oracle", "q_learning", "ac_ctw_uct", "local_llm_policy", "local_llm_constrained"]
+LLM_ARMS = ("local_llm_policy", "local_llm_constrained")
 
 
 def llm_record_path(llm_dir, task_id, rep):
@@ -40,14 +41,19 @@ def play_episode(env, agent, seed, horizon):
 
 
 def job_tag(agents_enabled):
-    return "llm" if set(agents_enabled) == {"local_llm_policy"} else "main"
+    arms = set(agents_enabled)
+    if arms == {"local_llm_policy"}:
+        return "llm"
+    if arms == {"local_llm_constrained"}:
+        return "llmc"
+    return "main"
 
 
 def job_path(out_dir, task_id, rep, tag="main"):
     return Path(out_dir) / "jobs" / f"{task_id}__rep{rep:02d}__{tag}.json.gz"
 
 
-def build_agents(task, rep, corpus, data_dir, llm_dir, agents_enabled):
+def build_agents(task, rep, corpus, data_dir, llm_dir, agents_enabled, constrained_dir=None):
     """Instantiate only the requested arms. Returns (agents, status)."""
     agents, status = {}, {}
     if "random" in agents_enabled:
@@ -63,28 +69,30 @@ def build_agents(task, rep, corpus, data_dir, llm_dir, agents_enabled):
         agents["ac_ctw_uct"] = ACCTWUCTAgent(model, task.horizon)
     for name in agents:
         status[name] = "evaluated"
-    if "local_llm_policy" in agents_enabled:
-        rec_path = llm_record_path(llm_dir, task.task_id, rep)
-        if rec_path.exists():
+    for arm, directory in (("local_llm_policy", llm_dir), ("local_llm_constrained", constrained_dir)):
+        if arm not in agents_enabled:
+            continue
+        rec_path = llm_record_path(directory, task.task_id, rep) if directory else None
+        if rec_path is not None and rec_path.exists():
             record = json.loads(rec_path.read_text(encoding="utf-8"))
             table = policy_table_from_record(record)
-            status["local_llm_policy"] = "evaluated" if table is not None else record["status"]
+            status[arm] = "evaluated" if table is not None else record["status"]
             if table is not None:
-                agents["local_llm_policy"] = TablePolicyAgent("local_llm_policy", table, task.m)
+                agents[arm] = TablePolicyAgent(arm, table, task.m)
         else:
-            status["local_llm_policy"] = "skipped"
+            status[arm] = "skipped"
     return agents, status
 
 
 def run_job(job):
-    spec, rep, data_dir, llm_dir, out_dir, agents_enabled = job
+    spec, rep, data_dir, llm_dir, out_dir, agents_enabled, constrained_dir = job
     out_path = job_path(out_dir, spec["task_id"], rep, job_tag(agents_enabled))
     if out_path.exists():
         return str(out_path)
     task = FiniteTask.from_spec(spec)
     corpus = load_corpus_file(corpus_path(data_dir, task.task_id, rep))
     env = FiniteTaskEnv(task)
-    agents, status = build_agents(task, rep, corpus, data_dir, llm_dir, agents_enabled)
+    agents, status = build_agents(task, rep, corpus, data_dir, llm_dir, agents_enabled, constrained_dir)
     episodes, steps_rows = [], []
     seeds = eval_seeds(task.task_id, rep)
     for name in AGENT_ORDER:
@@ -113,9 +121,9 @@ def run_job(job):
 
 
 def run_all(corpus_dict, data_dir, llm_dir, out_dir, replicates=10, agents_enabled=None, processes=3,
-            task_ids=None, progress=print):
+            task_ids=None, progress=print, constrained_dir=None):
     agents_enabled = agents_enabled or AGENT_ORDER
-    jobs = [(spec, rep, str(data_dir), str(llm_dir), str(out_dir), agents_enabled)
+    jobs = [(spec, rep, str(data_dir), str(llm_dir), str(out_dir), agents_enabled, constrained_dir)
             for spec in corpus_dict["tasks"] if task_ids is None or spec["task_id"] in task_ids
             for rep in range(replicates)]
     done = 0

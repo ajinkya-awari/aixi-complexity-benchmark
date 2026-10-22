@@ -68,7 +68,7 @@ def _matrix(rep_table, agent, metric, tasks, reps):
 
 
 def bootstrap_table(rep_table: pd.DataFrame, n=N_RESAMPLES, seed=BOOTSTRAP_SEED,
-                    pair_agents=("q_learning", "ac_ctw_uct", "local_llm_policy")):
+                    pair_agents=("q_learning", "ac_ctw_uct", "local_llm_policy", "local_llm_constrained")):
     tasks = sorted(rep_table.task_id.unique())
     reps = sorted(rep_table.rep.unique())
     agents = sorted(rep_table.agent.unique())
@@ -117,7 +117,7 @@ PROXY_DIMS = ["reachable_history_state_count", "public_history_order_m", "horizo
 
 
 def proxy_associations(summary: pd.DataFrame, corpus: dict, agents=("random", "q_learning", "ac_ctw_uct",
-                                                                      "local_llm_policy")):
+                                                                      "local_llm_policy", "local_llm_constrained")):
     """Exploratory Spearman associations between each proxy dimension and the task-level
     normalized oracle gap, Holm-corrected across all tests. Never a confirmatory analysis."""
     proxies = pd.DataFrame([{**t["proxy_vector"], "task_id": t["task_id"]} for t in corpus["tasks"]])

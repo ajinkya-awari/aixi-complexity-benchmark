@@ -1,0 +1,43 @@
+{
+ "actions": [
+  0,
+  1,
+  0,
+  1
+ ],
+ "decoding": {
+  "allowed_tokens": [
+   "0",
+   "1"
+  ],
+  "do_sample": false,
+  "max_new_tokens_rule": "n_keys",
+  "mode": "constrained",
+  "temperature": null,
+  "top_p": null
+ },
+ "keys": [
+  [
+   0
+  ],
+  [
+   1
+  ],
+  [
+   2
+  ],
+  [
+   3
+  ]
+ ],
+ "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+ "n_keys": 4,
+ "prompt_instance_hash": "cce945f12ab5d142ecbb46f4b90fc858822a71b904260a487df69233b0029fbf",
+ "prompt_template_hash": "f8e628ca208f0c1cdca85fa339c156e4a9e702ac9afba2b2b033ee11494638a3",
+ "raw_output": "0101",
+ "reason": "",
+ "revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+ "schema_version": "policy-digits-v1",
+ "status": "valid",
+ "tokenizer_hash": "39893b6b4ba24ac840dc87e44123c3764fbb95d78645d06b63ca02f8bcd09a72"
+}

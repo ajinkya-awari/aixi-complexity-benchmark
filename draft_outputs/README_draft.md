@@ -22,10 +22,12 @@ hierarchical bootstrap (10,000 resamples of tasks, then replicates), suite-level
 | Tabular Q | 10.92 | 0.333 | 0.247 | 0.421 |
 | AC-CTW-UCT | 12.14 | 0.199 | 0.076 | 0.346 |
 | Local Qwen policy table | 5.48 | 0.999 | 0.610 | 1.351 |
+| Local Qwen, digit-constrained (secondary) | 5.02 | 1.166 | 0.917 | 1.409 |
 | Exact oracle | 13.16 | 0.000 | 0.000 | 0.000 |
 
 Local Qwen policy-table status over task x replicate records (200 total): evaluated: 86, invalid: 114.
 Invalid outputs are excluded from value-based metrics and are never replaced by other behavior.
+Secondary digit-constrained Qwen arm status (200 total): evaluated: 200.
 
 ## Files
 

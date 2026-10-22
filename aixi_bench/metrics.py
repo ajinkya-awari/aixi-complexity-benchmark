@@ -48,18 +48,20 @@ def summary_by_task(rep_table: pd.DataFrame, status: pd.DataFrame, agents) -> pd
             mean_return=grp.v_agent.mean(),
             normalized_oracle_gap=float(gaps.mean()) if gaps.notna().any() else float("nan"),
             success_rate=grp.success_rate.mean(),
-            invalid_output_rate=invalid if agent == "local_llm_policy" else 0.0,
+            invalid_output_rate=invalid if agent.startswith("local_llm") else 0.0,
             runtime_per_task_s=grp.runtime_per_task_s.mean(),
             runtime_per_decision_s=grp.get("runtime_per_decision_s", pd.Series(dtype=float)).mean(),
             mean_logloss_bits=grp.mean_logloss_bits.mean() if grp.mean_logloss_bits.notna().any() else float("nan"),
         ))
-    llm_missing = status[(status.agent == "local_llm_policy") & (status.status != "evaluated")]
-    for task, grp in llm_missing.groupby("task_id"):
-        if not any(r["task_id"] == task and r["agent"] == "local_llm_policy" for r in out):
-            out.append(dict(task_id=task, agent="local_llm_policy", n_replicates=0, mean_return=float("nan"),
+    for arm in ("local_llm_policy", "local_llm_constrained"):
+        missing = status[(status.agent == arm) & (status.status != "evaluated")]
+        for task, grp in missing.groupby("task_id"):
+            if any(r["task_id"] == task and r["agent"] == arm for r in out):
+                continue
+            total = len(status[(status.agent == arm) & (status.task_id == task)])
+            out.append(dict(task_id=task, agent=arm, n_replicates=0, mean_return=float("nan"),
                             normalized_oracle_gap=float("nan"), success_rate=float("nan"),
-                            invalid_output_rate=float((grp.status == "invalid").sum() / len(
-                                status[(status.agent == "local_llm_policy") & (status.task_id == task)])),
+                            invalid_output_rate=float((grp.status == "invalid").sum() / total),
                             runtime_per_task_s=float("nan"), runtime_per_decision_s=float("nan"),
                             mean_logloss_bits=float("nan")))
     return pd.DataFrame(out).sort_values(["task_id", "agent"]).reset_index(drop=True)

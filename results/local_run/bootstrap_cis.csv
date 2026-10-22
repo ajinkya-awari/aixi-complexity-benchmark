@@ -20,6 +20,27 @@ task,sparse_sequence_V2,ac_ctw_uct,normalized_oracle_gap,0.014418177201958069,0.
 task,sparse_sequence_V3,ac_ctw_uct,normalized_oracle_gap,0.00951479006362546,0.00680641243600074,0.012120215204846919,10000
 task,sparse_sequence_V4,ac_ctw_uct,normalized_oracle_gap,0.10887130702271416,0.09013790259607085,0.1278580764381635,10000
 suite_hierarchical,ALL,ac_ctw_uct,normalized_oracle_gap,0.19930695747426902,0.07611340808922057,0.34608854583242876,10000
+task,branching_V1,local_llm_constrained,normalized_oracle_gap,1.7521916402514006,1.6622065121672536,1.8527465612300198,10000
+task,branching_V2,local_llm_constrained,normalized_oracle_gap,0.5689177932465056,0.5326976660784383,0.6046443259627372,10000
+task,branching_V3,local_llm_constrained,normalized_oracle_gap,1.7547586608538537,1.6480465829065858,1.8844482883169313,10000
+task,branching_V4,local_llm_constrained,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,contextual_V1,local_llm_constrained,normalized_oracle_gap,0.8539342603314803,0.6061828589823618,1.0380218171250641,10000
+task,contextual_V2,local_llm_constrained,normalized_oracle_gap,0.4990468262462565,0.484406501903856,0.5128513790597421,10000
+task,contextual_V3,local_llm_constrained,normalized_oracle_gap,1.994686413726317,1.9703381100031767,2.0231102414986455,10000
+task,contextual_V4,local_llm_constrained,normalized_oracle_gap,1.9879197802184685,1.9757767760341145,1.9991382674431903,10000
+task,delayed_V1,local_llm_constrained,normalized_oracle_gap,0.20134228187919462,0.0,0.6040268456375838,10000
+task,delayed_V2,local_llm_constrained,normalized_oracle_gap,0.9889846504341717,0.9686037162188538,1.0114090820675437,10000
+task,delayed_V3,local_llm_constrained,normalized_oracle_gap,0.9878763719599671,0.9707920656748641,1.0049722686332505,10000
+task,delayed_V4,local_llm_constrained,normalized_oracle_gap,0.9980536116599922,0.9882631384369205,1.010977388299178,10000
+task,reactive_V1,local_llm_constrained,normalized_oracle_gap,2.018316905307386,1.9815905697416156,2.0524628723811045,10000
+task,reactive_V2,local_llm_constrained,normalized_oracle_gap,1.316244280592627,1.2926146322880896,1.3382022442804704,10000
+task,reactive_V3,local_llm_constrained,normalized_oracle_gap,1.5073338045547016,1.4836580939660011,1.5311226824472761,10000
+task,reactive_V4,local_llm_constrained,normalized_oracle_gap,1.0162618827473586,0.9952985394970035,1.0371644871805106,10000
+task,sparse_sequence_V1,local_llm_constrained,normalized_oracle_gap,1.4413023786324208,1.4181527481149208,1.4676271455698722,10000
+task,sparse_sequence_V2,local_llm_constrained,normalized_oracle_gap,1.2554041887712013,1.2363771224179383,1.2726982221151295,10000
+task,sparse_sequence_V3,local_llm_constrained,normalized_oracle_gap,1.1400152458103896,1.1276551353756117,1.1553443118815412,10000
+task,sparse_sequence_V4,local_llm_constrained,normalized_oracle_gap,1.0467361459614666,1.0419604952672907,1.051346533269714,10000
+suite_hierarchical,ALL,local_llm_constrained,normalized_oracle_gap,1.1664663561592579,0.9165049243974194,1.4088101306036,10000
 task,branching_V1,local_llm_policy,normalized_oracle_gap,,,,10000
 task,branching_V2,local_llm_policy,normalized_oracle_gap,0.5689177932465056,0.5326976660784383,0.6046443259627372,10000
 task,branching_V3,local_llm_policy,normalized_oracle_gap,1.7547586608538537,1.6480465829065858,1.8844482883169313,10000
@@ -146,6 +167,27 @@ task,sparse_sequence_V2,ac_ctw_uct - local_llm_policy,normalized_oracle_gap,-1.2
 task,sparse_sequence_V3,ac_ctw_uct - local_llm_policy,normalized_oracle_gap,-1.130500455746764,-1.145641942005307,-1.1185475744127538,10000
 task,sparse_sequence_V4,ac_ctw_uct - local_llm_policy,normalized_oracle_gap,,,,10000
 suite_hierarchical,ALL,ac_ctw_uct - local_llm_policy,normalized_oracle_gap,-0.8624347123896134,-1.286801084203046,-0.39645313112079095,10000
+task,branching_V1,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.7115288588520844,-0.7998828648217069,-0.6303882245517872,10000
+task,branching_V2,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,0.07444681169091855,0.021290565065312683,0.11970848291548183,10000
+task,branching_V3,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.5962716199574942,-1.7430326117821713,-1.4765665412878928,10000
+task,branching_V4,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,0.37808652272254206,0.3550953582284748,0.40161462561610245,10000
+task,contextual_V1,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.851713100223747,-1.0360883029575407,-0.6034238042782126,10000
+task,contextual_V2,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.4725444740605352,-0.4851485529099172,-0.45838552650251413,10000
+task,contextual_V3,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.9920524917097946,-2.020045151194497,-1.9682086705350719,10000
+task,contextual_V4,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.9276102106982962,-1.9457540211423787,-1.9065964610346446,10000
+task,delayed_V1,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.19027123381288596,-0.5942132339237116,0.014149726340113447,10000
+task,delayed_V2,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,0.02178709840521693,-0.004009188090809065,0.050185873532394266,10000
+task,delayed_V3,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.7163625811376767,-0.7707845861638446,-0.6589799336348008,10000
+task,delayed_V4,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.8956835466887589,-0.9312244174824695,-0.8658709433795322,10000
+task,reactive_V1,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-2.018067528748783,-2.052317215481293,-1.9813285214624483,10000
+task,reactive_V2,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.3116063698468126,-1.3330658470902914,-1.288585765232399,10000
+task,reactive_V3,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.4831553325487792,-1.5072284572068113,-1.4601643204020365,10000
+task,reactive_V4,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.9208487095581347,-0.9444459694257517,-0.8980199758616046,10000
+task,sparse_sequence_V1,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.4204410424199148,-1.4484167306061049,-1.3956681553971526,10000
+task,sparse_sequence_V2,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.2409860115692433,-1.2619581826827106,-1.2177500332119442,10000
+task,sparse_sequence_V3,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-1.130500455746764,-1.145641942005307,-1.1185475744127538,10000
+task,sparse_sequence_V4,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.9378648389387522,-0.9567329786219378,-0.9186639327643491,10000
+suite_hierarchical,ALL,ac_ctw_uct - local_llm_constrained,normalized_oracle_gap,-0.9671593986849889,-1.2574605406664372,-0.6696668407415814,10000
 task,branching_V1,local_llm_policy - q_learning,normalized_oracle_gap,,,,10000
 task,branching_V2,local_llm_policy - q_learning,normalized_oracle_gap,-0.02496845487986953,-0.4133977832300154,0.3312053729131186,10000
 task,branching_V3,local_llm_policy - q_learning,normalized_oracle_gap,1.1525625247527111,0.7854696351582883,1.5219723449924996,10000
@@ -167,6 +209,48 @@ task,sparse_sequence_V2,local_llm_policy - q_learning,normalized_oracle_gap,1.12
 task,sparse_sequence_V3,local_llm_policy - q_learning,normalized_oracle_gap,0.9710076526176229,0.7377027284580217,1.1220836495603583,10000
 task,sparse_sequence_V4,local_llm_policy - q_learning,normalized_oracle_gap,,,,10000
 suite_hierarchical,ALL,local_llm_policy - q_learning,normalized_oracle_gap,0.6085591161345338,0.20226790448828924,0.9931718635908449,10000
+task,branching_V1,local_llm_constrained - q_learning,normalized_oracle_gap,1.4990113566117453,1.2159251777064322,1.7484337995099473,10000
+task,branching_V2,local_llm_constrained - q_learning,normalized_oracle_gap,-0.02496845487986953,-0.4133977832300154,0.3312053729131186,10000
+task,branching_V3,local_llm_constrained - q_learning,normalized_oracle_gap,1.1525625247527111,0.7854696351582883,1.5219723449924996,10000
+task,branching_V4,local_llm_constrained - q_learning,normalized_oracle_gap,-0.582055449634536,-0.8467821299092243,-0.3157319453374882,10000
+task,contextual_V1,local_llm_constrained - q_learning,normalized_oracle_gap,0.8062427465167452,0.579933781555791,0.9831403559814325,10000
+task,contextual_V2,local_llm_constrained - q_learning,normalized_oracle_gap,0.10033541747355831,0.03604363811078158,0.1539101378305295,10000
+task,contextual_V3,local_llm_constrained - q_learning,normalized_oracle_gap,1.6683312888951538,1.5590858890564763,1.772629032827632,10000
+task,contextual_V4,local_llm_constrained - q_learning,normalized_oracle_gap,1.620859262952435,1.4770420964616227,1.7419836703769536,10000
+task,delayed_V1,local_llm_constrained - q_learning,normalized_oracle_gap,-0.12443719819136034,-0.5449229752536344,0.42579657202145726,10000
+task,delayed_V2,local_llm_constrained - q_learning,normalized_oracle_gap,0.5960182084025784,0.518928343343717,0.6633849331394713,10000
+task,delayed_V3,local_llm_constrained - q_learning,normalized_oracle_gap,0.5086141249055725,0.3392508527104572,0.677151693446538,10000
+task,delayed_V4,local_llm_constrained - q_learning,normalized_oracle_gap,0.7703846375602093,0.5813491523108086,0.9497122040538853,10000
+task,reactive_V1,local_llm_constrained - q_learning,normalized_oracle_gap,1.921215456032024,1.6970739108332211,2.0515332673253694,10000
+task,reactive_V2,local_llm_constrained - q_learning,normalized_oracle_gap,0.7851000117984995,0.39826023929522575,1.1192427686980626,10000
+task,reactive_V3,local_llm_constrained - q_learning,normalized_oracle_gap,1.151348954759729,0.8036596598496111,1.4374406118405196,10000
+task,reactive_V4,local_llm_constrained - q_learning,normalized_oracle_gap,0.7088707014385296,0.33555696045177813,1.0250084444374543,10000
+task,sparse_sequence_V1,local_llm_constrained - q_learning,normalized_oracle_gap,1.1565563869192161,0.7267949303154677,1.4557108663620688,10000
+task,sparse_sequence_V2,local_llm_constrained - q_learning,normalized_oracle_gap,1.1287437006649301,0.9159156240452906,1.2640895300017332,10000
+task,sparse_sequence_V3,local_llm_constrained - q_learning,normalized_oracle_gap,0.9710076526176229,0.7377027284580217,1.1220836495603583,10000
+task,sparse_sequence_V4,local_llm_constrained - q_learning,normalized_oracle_gap,0.8588386985251095,0.6311808236186177,1.025208827350504,10000
+suite_hierarchical,ALL,local_llm_constrained - q_learning,normalized_oracle_gap,0.8336290014060301,0.5459760451401856,1.1017236622793927,10000
+task,branching_V1,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,branching_V2,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,branching_V3,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,branching_V4,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,contextual_V1,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,contextual_V2,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,contextual_V3,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,contextual_V4,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,delayed_V1,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,delayed_V2,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,delayed_V3,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,delayed_V4,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,reactive_V1,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+task,reactive_V2,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,reactive_V3,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,reactive_V4,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,sparse_sequence_V1,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,sparse_sequence_V2,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,sparse_sequence_V3,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
+task,sparse_sequence_V4,local_llm_constrained - local_llm_policy,normalized_oracle_gap,,,,10000
+suite_hierarchical,ALL,local_llm_constrained - local_llm_policy,normalized_oracle_gap,0.0,0.0,0.0,10000
 task,branching_V1,ac_ctw_uct,v_agent,3.163,3.021,3.2939999999999996,10000
 task,branching_V2,ac_ctw_uct,v_agent,2.227,2.1510000000000007,2.325,10000
 task,branching_V3,ac_ctw_uct,v_agent,10.515,10.383,10.641,10000
@@ -188,6 +272,27 @@ task,sparse_sequence_V2,ac_ctw_uct,v_agent,4.942,4.912,4.9670000000000005,10000
 task,sparse_sequence_V3,ac_ctw_uct,v_agent,5.949999999999999,5.936,5.964,10000
 task,sparse_sequence_V4,ac_ctw_uct,v_agent,4.4799999999999995,4.39,4.569000000000001,10000
 suite_hierarchical,ALL,ac_ctw_uct,v_agent,12.1395,9.161365000000004,15.326027500000002,10000
+task,branching_V1,local_llm_constrained,v_agent,1.9569999999999996,1.8579999999999999,2.043,10000
+task,branching_V2,local_llm_constrained,v_agent,2.381,2.32,2.438,10000
+task,branching_V3,local_llm_constrained,v_agent,5.691,5.493,5.898999999999999,10000
+task,branching_V4,local_llm_constrained,v_agent,11.828999999999999,11.681999999999999,12.001,10000
+task,contextual_V1,local_llm_constrained,v_agent,6.952,5.891,8.443999999999999,10000
+task,contextual_V2,local_llm_constrained,v_agent,12.035,11.956999999999997,12.126025,10000
+task,contextual_V3,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,contextual_V4,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,delayed_V1,local_llm_constrained,v_agent,13.5,10.5,15.0,10000
+task,delayed_V2,local_llm_constrained,v_agent,7.621,7.471000000000001,7.757000000000001,10000
+task,delayed_V3,local_llm_constrained,v_agent,11.13,11.068000000000001,11.187000000000001,10000
+task,delayed_V4,local_llm_constrained,v_agent,7.503,7.346000000000001,7.626,10000
+task,reactive_V1,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,reactive_V2,local_llm_constrained,v_agent,4.024,3.933,4.112,10000
+task,reactive_V3,local_llm_constrained,v_agent,3.9639999999999995,3.8630000000000004,4.061,10000
+task,reactive_V4,local_llm_constrained,v_agent,11.854000000000001,11.623999999999999,12.094,10000
+task,sparse_sequence_V1,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V2,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V3,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V4,local_llm_constrained,v_agent,0.0,0.0,0.0,10000
+suite_hierarchical,ALL,local_llm_constrained,v_agent,5.022050000000001,2.97189375,7.15897125,10000
 task,branching_V1,local_llm_policy,v_agent,,,,10000
 task,branching_V2,local_llm_policy,v_agent,2.381,2.32,2.438,10000
 task,branching_V3,local_llm_policy,v_agent,5.691,5.493,5.898999999999999,10000
@@ -314,6 +419,27 @@ task,sparse_sequence_V2,ac_ctw_uct - local_llm_policy,v_agent,4.942,4.912,4.9670
 task,sparse_sequence_V3,ac_ctw_uct - local_llm_policy,v_agent,5.949999999999999,5.936,5.964,10000
 task,sparse_sequence_V4,ac_ctw_uct - local_llm_policy,v_agent,,,,10000
 suite_hierarchical,ALL,ac_ctw_uct - local_llm_policy,v_agent,5.119166666666667,2.391028869047619,7.924377083333333,10000
+task,branching_V1,ac_ctw_uct - local_llm_constrained,v_agent,1.206,1.0960000000000003,1.3119999999999998,10000
+task,branching_V2,ac_ctw_uct - local_llm_constrained,v_agent,-0.15400000000000005,-0.24300000000000005,-0.05,10000
+task,branching_V3,ac_ctw_uct - local_llm_constrained,v_agent,4.824,4.6080000000000005,5.037999999999999,10000
+task,branching_V4,ac_ctw_uct - local_llm_constrained,v_agent,-0.9689999999999996,-1.0379999999999994,-0.9089999999999996,10000
+task,contextual_V1,ac_ctw_uct - local_llm_constrained,v_agent,5.035,3.542975,6.096000000000001,10000
+task,contextual_V2,ac_ctw_uct - local_llm_constrained,v_agent,3.7550000000000003,3.658,3.839,10000
+task,contextual_V3,ac_ctw_uct - local_llm_constrained,v_agent,15.979,15.969999999999999,15.987000000000004,10000
+task,contextual_V4,ac_ctw_uct - local_llm_constrained,v_agent,23.270999999999997,23.115000000000002,23.4,10000
+task,delayed_V1,ac_ctw_uct - local_llm_constrained,v_agent,1.4170000000000003,-0.10600000000000005,4.427,10000
+task,delayed_V2,ac_ctw_uct - local_llm_constrained,v_agent,-0.15900000000000009,-0.36199999999999993,0.029999999999999895,10000
+task,delayed_V3,ac_ctw_uct - local_llm_constrained,v_agent,7.88,7.273000000000001,8.454999999999998,10000
+task,delayed_V4,ac_ctw_uct - local_llm_constrained,v_agent,20.183000000000003,19.594,20.877999999999997,10000
+task,reactive_V1,ac_ctw_uct - local_llm_constrained,v_agent,7.999,7.997,8.0,10000
+task,reactive_V2,ac_ctw_uct - local_llm_constrained,v_agent,7.948,7.862,8.040000000000001,10000
+task,reactive_V3,ac_ctw_uct - local_llm_constrained,v_agent,11.843,11.743999999999998,11.956,10000
+task,reactive_V4,ac_ctw_uct - local_llm_constrained,v_agent,11.006,10.744975,11.287,10000
+task,sparse_sequence_V1,ac_ctw_uct - local_llm_constrained,v_agent,5.912999999999999,5.880974999999999,5.942,10000
+task,sparse_sequence_V2,ac_ctw_uct - local_llm_constrained,v_agent,4.942,4.912,4.9670000000000005,10000
+task,sparse_sequence_V3,ac_ctw_uct - local_llm_constrained,v_agent,5.949999999999999,5.936,5.964,10000
+task,sparse_sequence_V4,ac_ctw_uct - local_llm_constrained,v_agent,4.4799999999999995,4.39,4.569000000000001,10000
+suite_hierarchical,ALL,ac_ctw_uct - local_llm_constrained,v_agent,7.11745,4.496065000000001,10.133398749999996,10000
 task,branching_V1,local_llm_policy - q_learning,v_agent,,,,10000
 task,branching_V2,local_llm_policy - q_learning,v_agent,0.0700000000000001,-0.6449999999999999,0.8540000000000001,10000
 task,branching_V3,local_llm_policy - q_learning,v_agent,-3.467,-4.394,-2.4540000000000006,10000
@@ -335,3 +461,45 @@ task,sparse_sequence_V2,local_llm_policy - q_learning,v_agent,-4.5,-5.0,-3.7,100
 task,sparse_sequence_V3,local_llm_policy - q_learning,v_agent,-5.1,-5.9,-3.9,10000
 task,sparse_sequence_V4,local_llm_policy - q_learning,v_agent,,,,10000
 suite_hierarchical,ALL,local_llm_policy - q_learning,v_agent,-3.659366666666666,-6.02839246031746,-1.4687388888888895,10000
+task,branching_V1,local_llm_constrained - q_learning,v_agent,-2.532,-2.9,-2.093975000000001,10000
+task,branching_V2,local_llm_constrained - q_learning,v_agent,0.0700000000000001,-0.6449999999999999,0.8540000000000001,10000
+task,branching_V3,local_llm_constrained - q_learning,v_agent,-3.467,-4.394,-2.4540000000000006,10000
+task,branching_V4,local_llm_constrained - q_learning,v_agent,1.4299999999999997,0.7969999999999997,2.0329999999999995,10000
+task,contextual_V1,local_llm_constrained - q_learning,v_agent,-4.768,-5.809025,-3.411,10000
+task,contextual_V2,local_llm_constrained - q_learning,v_agent,-0.7950000000000002,-1.2200000000000002,-0.2849250000000014,10000
+task,contextual_V3,local_llm_constrained - q_learning,v_agent,-13.373999999999999,-14.152025,-12.556975,10000
+task,contextual_V4,local_llm_constrained - q_learning,v_agent,-19.575,-21.058025,-17.812,10000
+task,delayed_V1,local_llm_constrained - q_learning,v_agent,0.916,-3.1660999999999992,4.012099999999999,10000
+task,delayed_V2,local_llm_constrained - q_learning,v_agent,-4.444000000000001,-4.936,-3.878,10000
+task,delayed_V3,local_llm_constrained - q_learning,v_agent,-5.552,-7.3501249999999985,-3.7359000000000013,10000
+task,delayed_V4,local_llm_constrained - q_learning,v_agent,-17.311,-21.255000000000003,-13.125650000000004,10000
+task,reactive_V1,local_llm_constrained - q_learning,v_agent,-7.598000000000001,-8.0,-6.794,10000
+task,reactive_V2,local_llm_constrained - q_learning,v_agent,-4.743,-6.7490250000000005,-2.383975,10000
+task,reactive_V3,local_llm_constrained - q_learning,v_agent,-9.199,-11.574124999999999,-6.4030000000000005,10000
+task,reactive_V4,local_llm_constrained - q_learning,v_agent,-8.450999999999999,-12.254025,-3.9749750000000006,10000
+task,sparse_sequence_V1,local_llm_constrained - q_learning,v_agent,-4.8,-6.0,-3.0,10000
+task,sparse_sequence_V2,local_llm_constrained - q_learning,v_agent,-4.5,-5.0,-3.7,10000
+task,sparse_sequence_V3,local_llm_constrained - q_learning,v_agent,-5.1,-5.9,-3.9,10000
+task,sparse_sequence_V4,local_llm_constrained - q_learning,v_agent,-4.1,-4.9,-3.0,10000
+suite_hierarchical,ALL,local_llm_constrained - q_learning,v_agent,-5.8946499999999995,-8.46352125,-3.6751887499999993,10000
+task,branching_V1,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,branching_V2,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,branching_V3,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,branching_V4,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,contextual_V1,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,contextual_V2,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,contextual_V3,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,contextual_V4,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,delayed_V1,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,delayed_V2,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,delayed_V3,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,delayed_V4,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,reactive_V1,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+task,reactive_V2,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,reactive_V3,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,reactive_V4,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V1,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V2,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V3,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000
+task,sparse_sequence_V4,local_llm_constrained - local_llm_policy,v_agent,,,,10000
+suite_hierarchical,ALL,local_llm_constrained - local_llm_policy,v_agent,0.0,0.0,0.0,10000

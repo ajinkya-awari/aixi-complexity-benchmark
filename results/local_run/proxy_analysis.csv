@@ -8,12 +8,12 @@ random,canonical_task_spec_utf8_bytes,20,,,,exploratory; not confirmatory; no mo
 q_learning,reachable_history_state_count,20,0.03351385260098833,0.8884493154757761,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 q_learning,public_history_order_m,20,-0.22510616575464074,0.33997814985784586,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 q_learning,horizon,20,0.2328276342103767,0.3232229735939321,1.0,exploratory; not confirmatory; no monotonic conclusion implied
-q_learning,branching_factor,20,0.591746209857853,0.005988079524305891,0.10778543143750603,exploratory; not confirmatory; no monotonic conclusion implied
+q_learning,branching_factor,20,0.591746209857853,0.005988079524305891,0.14371390858334138,exploratory; not confirmatory; no monotonic conclusion implied
 q_learning,reward_density_uniform_policy,20,0.15231601720581586,0.5214740099755345,1.0,exploratory; not confirmatory; no monotonic conclusion implied
-q_learning,canonical_task_spec_utf8_bytes,20,0.46784508761710486,0.037507046890319404,0.6376197971354298,exploratory; not confirmatory; no monotonic conclusion implied
+q_learning,canonical_task_spec_utf8_bytes,20,0.46784508761710486,0.037507046890319404,0.8626620784773463,exploratory; not confirmatory; no monotonic conclusion implied
 ac_ctw_uct,reachable_history_state_count,20,0.08454630997067511,0.7230449209942681,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 ac_ctw_uct,public_history_order_m,20,-0.07503538858488025,0.7532135558994908,1.0,exploratory; not confirmatory; no monotonic conclusion implied
-ac_ctw_uct,horizon,20,0.4422946362257323,0.05085381197941043,0.8136609916705669,exploratory; not confirmatory; no monotonic conclusion implied
+ac_ctw_uct,horizon,20,0.4422946362257323,0.05085381197941043,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 ac_ctw_uct,branching_factor,20,0.27391221320005876,0.24255828364896845,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 ac_ctw_uct,reward_density_uniform_policy,20,-0.39400112613953386,0.08563248602069229,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 ac_ctw_uct,canonical_task_spec_utf8_bytes,20,0.3617901722569573,0.11701255590905582,1.0,exploratory; not confirmatory; no monotonic conclusion implied
@@ -23,3 +23,9 @@ local_llm_policy,horizon,10,-0.3219762400969859,0.36426362959701303,1.0,explorat
 local_llm_policy,branching_factor,10,-0.040768579870312065,0.9109668099187009,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 local_llm_policy,reward_density_uniform_policy,10,0.1661609253499892,0.6463932273094293,1.0,exploratory; not confirmatory; no monotonic conclusion implied
 local_llm_policy,canonical_task_spec_utf8_bytes,10,-0.2553203283456271,0.4764934533513361,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,reachable_history_state_count,20,-0.2490688591027996,0.2896217063581028,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,public_history_order_m,20,-0.10004718477984033,0.6747258828171366,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,horizon,20,-0.2849997127792571,0.22324414696742614,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,branching_factor,20,-0.22440038457497527,0.3415345668710841,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,reward_density_uniform_policy,20,0.1810695510660974,0.44488185017264154,1.0,exploratory; not confirmatory; no monotonic conclusion implied
+local_llm_constrained,canonical_task_spec_utf8_bytes,20,-0.2707785073025044,0.24820568499014295,1.0,exploratory; not confirmatory; no monotonic conclusion implied
