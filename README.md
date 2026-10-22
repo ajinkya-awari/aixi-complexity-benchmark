@@ -47,9 +47,10 @@ inference to all possible tasks.
 | Local Qwen, digit-constrained (secondary, added after seeing the primary result) | 5.02 | 1.166 | [0.917, 1.409] |
 | Exact oracle | 13.16 | 0.000 | [0.000, 0.000] |
 
-Lower gap is closer to the oracle. The primary Qwen row uses only the 86 of 200 task-replicate records with a valid policy table.
+Lower gap is closer to the oracle. The primary Qwen row uses only the 86 of 200 task-replicate records with a valid policy table, which cover 10 of the 20 tasks, so it is not directly comparable with rows that average all 200 records.
 
-The secondary arm restricts decoding to the digit tokens 0 and 1 for exactly one token per history key, so all 200 tables are valid by construction. It was added after the primary result was known, so treat it as exploratory; it does not replace the primary arm. A gap above 1 means the arm scored below the random policy on average.
+The secondary arm restricts decoding to the digit tokens 0 and 1 for exactly one token per history key, so all 200 tables are valid by construction. It was added after the primary result was known, so treat it as post-hoc, secondary and exploratory; it does not replace the primary arm. On the 86 records where the primary arm was valid, its tables are identical to the primary tables, so the two arms differ only on the other 114 records. A gap above 1 means the arm scored below the random policy on average.
+No claim is made that the constrained arm is better or worse than the primary arm.
 
 ![Normalized oracle gap by task](results/local_run/figures/gap_by_task.png)
 
@@ -118,7 +119,7 @@ assets/          README diagram
 ## Limitations
 
 - The Qwen arm produced a valid policy table in only 86 of 200 records; 114 are recorded as invalid and excluded from value-based metrics.
-- Proxy associations are exploratory; no monotonic relationship between proxies and performance is claimed.
+- Proxy associations are exploratory and none is significant after Holm correction (smallest Holm-adjusted p = 0.144); no relationship between proxies and performance is claimed.
 - The suite is small, synthetic and fixed; results do not generalize to other task distributions.
 - Python 3.12.13 was used because 3.12.10 was unavailable; other pins are exact (see `pyproject.toml`).
 - No remote model or API is used anywhere.

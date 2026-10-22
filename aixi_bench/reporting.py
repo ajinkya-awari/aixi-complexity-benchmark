@@ -66,99 +66,6 @@ def _suite_table(run):
     return suite.set_index("contrast"), ret.set_index("contrast")
 
 
-def write_drafts(run, tasks_path, out_dir):
-    run, out_dir = Path(run), Path(out_dir)
-    (out_dir / "section4_draft").mkdir(parents=True, exist_ok=True)
-    (out_dir / "outreach").mkdir(parents=True, exist_ok=True)
-    status = pd.read_csv(run / "agent_status.csv")
-    gap, ret = _suite_table(run)
-    llm = status[status.agent == "local_llm_policy"]
-    llm_counts = llm.status.value_counts().to_dict()
-    con = status[status.agent == "local_llm_constrained"]
-    con_counts = con.status.value_counts().to_dict()
-    rows = []
-    for a in AGENTS:
-        if a in gap.index:
-            g = gap.loc[a]
-            rows.append((a, _fmt(ret.loc[a, "mean"], 2), _fmt(g["mean"]), _fmt(g.ci_lo), _fmt(g.ci_hi)))
-    md_table = "| Arm | Mean return | Normalized oracle gap | 95% CI low | 95% CI high |\n|---|---|---|---|---|\n"
-    md_table += "\n".join(f"| {LABELS[a]} | {r} | {g} | {lo} | {hi} |" for a, r, g, lo, hi in rows)
-    con_line = ", ".join(f"{k}: {v}" for k, v in sorted(con_counts.items())) or "not run"
-    llm_line = ", ".join(f"{k}: {v}" for k, v in sorted(llm_counts.items())) or "no records"
-
-    readme = f"""# AIXI-Complexity Benchmark (local draft)
-
-Local draft generated from `{run.as_posix()}`. Every number below is copied from the run outputs.
-
-## Setup
-
-20 frozen finite-state tasks (5 families x 4 variants), 10 independent data replicates per task, 256 uniform
-random public exploration episodes and 100 held-out evaluation episodes per task x replicate. Arms: random,
-tabular Q-learning, exact oracle (dynamic programming), AC-CTW-UCT (MC-AIXI-inspired, not faithful MC-AIXI-CTW), and a
-local `Qwen/Qwen2.5-0.5B-Instruct` policy-table arm. Task levels are described by a separate six-dimensional proxy
-vector; they are not Kolmogorov complexity.
-
-## Suite-level results
-
-Normalized oracle gap = (V_oracle - V_agent) / max(|V_oracle - V_random|, 1e-8), unclipped. Intervals are
-hierarchical bootstrap (10,000 resamples of tasks, then replicates), suite-level descriptive uncertainty for this fixed
-20-task suite, not inference to all possible tasks.
-
-{md_table}
-
-Local Qwen policy-table status over task x replicate records ({len(llm)} total): {llm_line}.
-Invalid outputs are excluded from value-based metrics and are never replaced by other behavior.
-Secondary digit-constrained Qwen arm status ({len(con)} total): {con_line}.
-
-## Files
-
-`summary.csv`, `summary_by_replicate.csv`, `bootstrap_cis.csv`, `proxy_analysis.csv` (exploratory, Holm-corrected),
-`figures/`. See the evidence manifests for hashes.
-"""
-    (out_dir / "README_draft.md").write_text(readme, encoding="utf-8")
-
-    tex_rows = "\n".join(f"{LABELS[a]} & {r} & {g} & [{lo}, {hi}] \\\\" for a, r, g, lo, hi in rows)
-    tex = r"""% Local draft of Section 4 (Results). Numbers are copied from the run outputs.
-\section{Results}
-We evaluate five arms on 20 frozen finite-state tasks with 10 data replicates each (256 exploration and 100 held-out
-episodes per task and replicate). The primary metric is the normalized oracle gap
-$(V_{oracle}-V_{agent})/\max(|V_{oracle}-V_{random}|,10^{-8})$, reported unclipped.
-Table~\ref{tab:suite} gives suite-level means with 95\% hierarchical bootstrap intervals; these describe uncertainty
-for this fixed task suite only. Task levels are summarized by a six-dimensional proxy vector and are not Kolmogorov
-complexity; proxy associations are exploratory and Holm-corrected.
-\begin{table}[h]
-\centering
-\begin{tabular}{lrrr}
-Arm & Mean return & Normalized gap & 95\% CI \\
-\hline
-""" + tex_rows + r"""
-\end{tabular}
-\caption{Suite-level results.}
-\label{tab:suite}
-\end{table}
-"""
-    (out_dir / "section4_draft" / "aixi_complexity_section4.tex").write_text(tex, encoding="utf-8")
-
-    outreach = """Subject: Finite-state benchmark of AIXI-style planning and simple learners (draft)
-
-Hello,
-
-I built a small local benchmark that compares a tabular Q-learner, an AC-CTW-UCT agent (inspired by MC-AIXI-CTW, not a
-faithful reproduction), an exact dynamic-programming oracle, a random policy and a local 0.5B policy-table model on 20
-frozen finite-state tasks. Task difficulty is described by a separate proxy vector, not by Kolmogorov complexity.
-
-Suite-level results with intervals are in `README_draft.md` of the project folder. I would value your view on whether
-the task families and the proxy vector are a sensible way to organize this kind of comparison.
-
-Best regards,
-Ajinkya
-
-Draft only. Recipient and contact details intentionally left unset.
-"""
-    (out_dir / "outreach" / "aixi_labs_draft.md").write_text(outreach, encoding="utf-8")
-    print("wrote drafts to", out_dir)
-
-
 def verify_run(run, expect_tasks=20, expect_reps=10, expect_eval=100, expect_resamples=10000):
     run = Path(run)
     problems = []
@@ -189,3 +96,8 @@ def verify_run(run, expect_tasks=20, expect_reps=10, expect_eval=100, expect_res
         if not (run / f).exists():
             problems.append(f"missing {f}")
     return problems
+
+
+def write_drafts(run, tasks_path, out_dir):
+    from .drafts import write_drafts as _write
+    _write(run, tasks_path, out_dir)

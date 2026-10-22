@@ -190,6 +190,12 @@ def cmd_drafts(args):
     return 0
 
 
+def cmd_arxiv_bundle(args):
+    from .drafts import write_arxiv_bundle
+    write_arxiv_bundle(args.run, args.tasks, args.out)
+    return 0
+
+
 def cmd_verify_run(args):
     from .reporting import verify_run
     problems = verify_run(args.run)
@@ -267,6 +273,11 @@ def build_parser():
     dr.add_argument("--tasks", default="task_specs/frozen_finite_tasks.yaml")
     dr.add_argument("--out", default="draft_outputs")
     dr.set_defaults(fn=cmd_drafts)
+    ab = sub.add_parser("arxiv-bundle", help="local arXiv upload bundle (never submitted)")
+    ab.add_argument("--run", default="results/local_run")
+    ab.add_argument("--tasks", default="task_specs/frozen_finite_tasks.yaml")
+    ab.add_argument("--out", default="draft_outputs/arxiv_bundle")
+    ab.set_defaults(fn=cmd_arxiv_bundle)
     return p
 
 
